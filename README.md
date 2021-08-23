@@ -11,16 +11,16 @@ como SOAP UI, REST Client, u otro.
 
 ## Integrantes
 
-Alexis Abarca Arias
-Camilo Navas Moya
-Ignacio Delgado Vargas
-Josefa González Rocha
-Luis Correa Céspedes
+* *Alexis Abarca Arias*
+* *Camilo Navas Moya*
+* *Ignacio Delgado Vargas*
+* *Josefa González Rocha*
+* *Luis Correa Céspedes*
 
 ## Información adicional
 
-Asignatura: Redes y Comunicación de Datos
+**Asignatura**: Redes y Comunicación de Datos
 
 Grupo N°2
 
-Ingeniería Civil en Computación mención Informática
+*Ingeniería Civil en Computación mención Informática*
