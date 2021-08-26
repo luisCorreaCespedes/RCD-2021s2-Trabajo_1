@@ -2,3 +2,25 @@ body {
     background-image: url("../img/bgn.gif");
     background-size: cover;
 }
+
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 20%;
+    padding-bottom: 3%;
+}
+
+#box, #boxTitle {
+    padding-bottom: 30px;
+    padding-left: 20px;
+    background-color: rgb(204, 204, 187);
+    border-style: double;
+    border-width: 7px;
+}
+
+#boxTitle {
+    background-color: rgb(146, 141, 141);
+    margin-top: 3px;
+    margin-bottom: 3px;
+}

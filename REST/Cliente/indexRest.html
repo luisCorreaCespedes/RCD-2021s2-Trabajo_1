@@ -11,6 +11,133 @@
     <title>REST</title>
 </head>
 <body>
-    
+    <div class="container">
+        <img src="../Cliente/assets/img/bannerRest.png" alt="REST">
+        
+    <!-- Formulario RUT -->
+        <div class="col-12">
+            <div class="row" id="boxTitle">
+                <form class="row row-cols-lg-1 g-3 align-items-center">
+                    <div class="col-12">
+                        <div class="input-group">
+                            <strong>VALIDADOR DÍGITO VERIFICADOR</strong>
+                            Ingrese en los campos indicados su RUT y luego
+                            seleccione el Dígito Verificador (DV). Luego presione
+                            'Verificar DV' para comprobar si el Dígito Verificador
+                            pertenece al RUT ingresado.
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col-8">
+                <div class="row" id="box">
+                    <form class="row row-cols-lg-3 g-3 align-items-center">
+                        <div class="col-12">
+                            <div class="input-group">
+                                <div class="input-group-text" style="background-color: cadetblue;">RUT</div>
+                                <input type="number" class="form-control" placeholder="12345678" min="1000000" max="99999999" required>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="input-group">
+                                <div class="input-group-text" style="background-color: rgb(111, 161, 134);">DV</div>
+                                <select class="form-select" required>
+                                    <option selected disabled value="">Elija DV</option>
+                                    <option value="0">0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="K">K</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-dark" id="verifyDV">Verificar DV</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        
+            <div class="col-4">
+                <div class="row" id="box">
+                    <form class="row row-cols-lg-1 g-3 align-items-center">
+                        <div class="col-12">
+                            <div class="input-group">
+                                <div class="input-group-text" style="background-color: rgb(153, 199, 100);">Validación</div>
+                                <div class="input-group-text">
+                                    <strong id="validatorDV"></strong>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    <!-- FIN Formulario RUT -->
+
+    <!-- Formulario NOMBRES -->
+        <div class="col-12"  style="margin-top: 2%;">
+            <div class="row" id="boxTitle">
+                <form class="row row-cols-lg-1 g-3 align-items-center">
+                    <div class="col-12">
+                        <div class="input-group">
+                            <strong>“SPLIT” NOMBRE PROPIO</strong>
+                            Ingrese en el campo indicado su Nombre Completo (nombres y apellidos
+                            separados por un espacio). Luego presione 'Separar' para mostrar
+                            su Nombre Completo en una lista jerarquizada.
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col-8">
+                <div class="row" id="box">
+                    <form class="row row-cols-lg-2 g-3 align-items-center">
+                        <div class="col-12">
+                            <div class="input-group">
+                                <div class="input-group-text" style="background-color: rgb(197, 184, 109);">Su Nombre</div>
+                                <input type="text" class="form-control" placeholder="Nombre Nombre Apellido Apellido" required>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-dark" id="verifyName">Separar</button>
+                        </div>
+                    </form>
+                </div> 
+            </div>
+            
+            <div class="col-4">
+                <div class="row" id="box">
+                    <form class="row row-cols-lg-1 g-3 align-items-center">
+                        <div class="col-12">
+                            <div class="input-group">
+                                <div class="input-group-text" style="background-color: rgb(199, 100, 191);">Jerarquía</div>
+                                <div class="input-group-text">
+                                    <strong id="validatorName"></strong>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    <!-- FIN Formulario NOMBRES -->
+
+    </div>
 </body>
 </html>
