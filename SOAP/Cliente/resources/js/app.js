@@ -1,0 +1,1 @@
+document.getElementById('audioRest').play();
