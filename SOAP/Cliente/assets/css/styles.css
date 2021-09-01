@@ -8,7 +8,8 @@ img {
     margin-left: auto;
     margin-right: auto;
     width: 20%;
-    padding-bottom: 3%;
+    padding-top: 2%;
+    padding-bottom: 2%;
 }
 
 #box, #boxTitle {
@@ -23,4 +24,9 @@ img {
     background-color: rgb(146, 141, 141);
     margin-top: 3px;
     margin-bottom: 3px;
+}
+
+#btnREST {
+    width: 150%;
+    margin-top: 6px;
 }
