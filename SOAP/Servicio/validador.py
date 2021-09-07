@@ -9,7 +9,28 @@ def rutvalidador (rut):                                     #Recibe un rut como 
 
 #Si el número entero que regresa es 10, el dígito verificador es K
 
-def nombrecompleto (nombre):
-    return
+rutvalidador(18675767)                    #Pruebasss
 
-rutvalidador()                    #Pruebasss
+def separarnombres (ncompleto):
+    separados =  ncompleto.split(" ")
+    cont= len(separados)
+    contnombres= cont - 2
+    Nombress=[]
+    Apellidoss=[]
+
+    for i in range(contnombres):
+        Nombress.append(separados[i])
+
+    for j in range(2):
+        Apellidoss.append(separados[contnombres+j])
+
+    return Nombress, Apellidoss
+
+
+
+
+
+
+N,A= separarnombres("Camilo Esteban Galileo Navas Moya")   #pruebasss
+
+print(N)
