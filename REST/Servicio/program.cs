@@ -4,8 +4,7 @@ using System.Linq;
 using System.Text;
 
 
-//
-public static string Digito(int rut) {
+/*public static string Digito(int rut) {
         int suma = 0;
         int multiplicador = 1;
         while (rut != 0) {
@@ -23,4 +22,4 @@ public static string Digito(int rut) {
         } else {
             return suma.ToString();
         }
-}
+}*/
