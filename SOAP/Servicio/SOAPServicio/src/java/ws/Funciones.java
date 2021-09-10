@@ -53,6 +53,8 @@ public class Funciones {
      * Web service operation
      */
     public static boolean validarNombre(String nombre) {
+        String val;
+        val = "áéíóúÁÉÍÓÚ";
 	if(nombre.length() == 0) {
             return false;
 	}
@@ -74,6 +76,15 @@ public class Funciones {
 			cont++;
                     }
 		}
+                
+            }
+            for(int i=0; i<nombre.length(); i++) {
+                char tildes = nombre.charAt(i);
+                for(int j=0; j<val.length(); j++){
+                    if (tildes == val.charAt(j)){
+                        cont++;
+                    }
+                }
             }
             return cont == nombre.length();			
 	}
