@@ -1,5 +1,5 @@
 body {
-    background-image: url("../img/bgn.gif");
+    background-image: url("../img/bgn.jpg");
     background-size: cover;
 }
 
@@ -16,12 +16,12 @@ img {
     padding-bottom: 30px;
     padding-left: 20px;
     background-color: rgb(204, 204, 187);
-    border-style: double;
-    border-width: 7px;
+    border-style: solid;
+    border-width: 3px;
 }
 
 #boxTitle {
-    background-color: rgb(146, 141, 141);
+    background-color: rgb(204, 203, 203);
     margin-top: 3px;
     margin-bottom: 3px;
 }
