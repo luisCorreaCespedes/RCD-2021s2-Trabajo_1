@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../Cliente/assets/css/styles.css">
     <link rel="shortcut icon" href="../Cliente/assets/img/soap.png" type="image/png">
     <script src="../Cliente/assets/bootstrap-5.1.0-dist/js/bootstrap.bundle.js"></script>
+    <script src="../Cliente/assets/js/jquery_3_6.js"></script>
     <title>SOAP</title>
 </head>
 <body>
@@ -39,13 +40,13 @@
                         <div class="col-12">
                             <div class="input-group">
                                 <div class="input-group-text" style="background-color: cadetblue;">RUT</div>
-                                <input type="number" class="form-control" placeholder="12345678" min="1000000" max="99999999" required>
+                                <input id="inputRut" type="number" class="form-control" placeholder="12345678" min="1000000" max="99999999" required>
                             </div>
                         </div>
                         <div class="col-12">
                             <div class="input-group">
                                 <div class="input-group-text" style="background-color: rgb(111, 161, 134);">DV</div>
-                                <select class="form-select" required>
+                                <select id="inputDV" class="form-select" required>
                                     <option selected disabled value="">Elija DV</option>
                                     <option value="0">0</option>
                                     <option value="1">1</option>
@@ -140,4 +141,34 @@
 
     </div>
 </body>
+
+    <script>
+        $(document).ready(function() {
+        $("#verifyDV").click(function() {
+        var rut = $("#inputRut").val();
+        var dv = $("#inputDV").val();
+        var data = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ws=\"http://ws/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <ws:validador>\r\n        <rut>" + rut + "</rut>\r\n       <dv>" + dv + "</dv>\r\n       </ws:validador>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>";
+
+        var xhr = new XMLHttpRequest();
+        xhr.withCredentials = true;
+
+        xhr.addEventListener("readystatechange", function() {
+            if (this.readyState === 4) {
+                const parser = new DOMParser();
+                const data = parser.parseFromString(this.responseText, 'text/xml');
+                console.log(data.querySelector('validadorResponse').textContent);
+                $("#validatorDV").html(data.querySelector('validadorResponse').textContent);
+            }
+        });
+
+        xhr.open("POST", "http://localhost:8080/SOAPService/Funciones");
+        xhr.setRequestHeader("Content-Type", "text/xml");
+
+        xhr.send(data);
+
+        });
+
+        });
+    </script>
+
 </html>
