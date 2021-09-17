@@ -44,7 +44,7 @@ public class Funciones {
         char character;
         char tildes;
         int ascii;
-        val = "áéíóúÁÉÍÓÚ";
+        val = "áéíóúÁÉÍÓÚñÑ'ü";
         if(nombre.length() == 0) return false;
         else {
             int cont = 0;
