@@ -1,5 +1,7 @@
 # RCD Trabajo 1: WEB SERVICES SOAP/REST
 
+[![Quality gate](http://localhost:9000/api/project_badges/quality_gate?project=SOAP-RCD-T1-G02)](http://localhost:9000/dashboard?id=SOAP-RCD-T1-G02)
+
 ## Enunciado
 
 Construir un web Service SOAP y un Web Service Rest, que incluyan los 2 métodos descritos más abajo. 
@@ -15,18 +17,19 @@ como SOAP UI, REST Client, u otro.
 (por ejemplo 12345678; K) como campos separados y devolver como respuesta un indicador de si el dígito 
 verificador entregado es o no correcto para el rut en cuestión (considerar algoritmo de dígito verificador usado 
 en Chile).
+
 *“SPLIT” NOMBRE PROPIO*: El método debe recibir un nombre completo (nombres y apellidos, separados 
 por espacio); se asume que siempre vienen primero los nombres y luego los apellidos (paterno y luego 
 materno), considerando que una persona puede tener uno o más nombres. El método debe devolver una 
 estructura jerárquica como la descrita a continuación:
 
 * Nombres
-- Nombre 1
-- Nombre 2
-- …
+Nombre 1
+Nombre 2
+…
 * Apellidos
-- Apellido paterno
-- Apellido Materno
+Apellido paterno
+Apellido Materno
 
 ## Integrantes
 

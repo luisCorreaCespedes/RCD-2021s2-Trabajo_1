@@ -11,9 +11,9 @@ $(document).ready(function() {
         xhr.addEventListener("readystatechange", function() {
             if (this.readyState === 4) {
                 const parser = new DOMParser();
-                const data = parser.parseFromString(this.responseText, 'text/xml');
-                console.log(data.querySelector('validadorResponse').textContent);
-                $("#validatorDV").html(data.querySelector('validadorResponse').textContent);
+                const dater = parser.parseFromString(this.responseText, 'text/xml');
+                console.log(dater.querySelector('validadorResponse').textContent);
+                $("#validatorDV").html(dater.querySelector('validadorResponse').textContent);
             }
         });
         xhr.open("POST", "http://localhost:8080/SOAPServicio/Funciones");
@@ -31,9 +31,9 @@ $(document).ready(function() {
         xhr.addEventListener("readystatechange", function() {
             if (this.readyState === 4) {
                 const parser = new DOMParser();
-                const data = parser.parseFromString(this.responseText, 'text/xml');
-                console.log(data.querySelector('splitResponse').textContent);
-                $("#validatorName").html(data.querySelector('splitResponse').textContent);
+                const dater = parser.parseFromString(this.responseText, 'text/xml');
+                console.log(dater.querySelector('splitResponse').textContent);
+                $("#validatorName").html(dater.querySelector('splitResponse').textContent);
             }
         });
         xhr.open("POST", "http://localhost:8080/SOAPServicio/Funciones");
