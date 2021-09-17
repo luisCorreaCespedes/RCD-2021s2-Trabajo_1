@@ -1,7 +1,5 @@
 # RCD Trabajo 1: WEB SERVICES SOAP/REST
 
-[![Quality gate](http://localhost:9000/api/project_badges/quality_gate?project=SOAP-RCD-T1-G02)](http://localhost:9000/dashboard?id=SOAP-RCD-T1-G02)
-
 ## Enunciado
 
 Construir un web Service SOAP y un Web Service Rest, que incluyan los 2 métodos descritos más abajo. 
@@ -24,12 +22,19 @@ materno), considerando que una persona puede tener uno o más nombres. El métod
 estructura jerárquica como la descrita a continuación:
 
 * Nombres
+
 Nombre 1
+
 Nombre 2
+
 …
+
 * Apellidos
+
 Apellido paterno
+
 Apellido Materno
+
 
 ## Integrantes
 
@@ -46,3 +51,7 @@ Apellido Materno
 Grupo N°2
 
 *Ingeniería Civil en Computación mención Informática*
+
+## SOAP interfaz
+
+![Screenshot](./SOAP/Cliente/assets/img/example.png)
