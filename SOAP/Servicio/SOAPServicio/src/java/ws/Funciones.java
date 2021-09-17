@@ -40,29 +40,16 @@ public class Funciones {
     }
 
     public static boolean validarNombre(String nombre) {
-        String val;
-        char character;
-        char tildes;
-        int ascii;
-        val = "áéíóúÁÉÍÓÚñÑ'ü";
+        String alfLat;
+        char letras;
+        alfLat = " ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzáéíóúÁÉÍÓÚñÑü'";
         if(nombre.length() == 0) return false;
         else {
             int cont = 0;
             for(int i=0; i<nombre.length(); i++) {
-                character = nombre.charAt(i);
-                ascii = (int) character;
-                if(ascii == 32) cont++;
-                for(int j=65; j<=90; j++) {
-                    if(ascii == j) cont++;
-                }
-                for(int h=97; h<=122; h++) {
-                    if(ascii == h) cont++;
-                }    
-            }
-            for(int i=0; i<nombre.length(); i++) {
-                tildes = nombre.charAt(i);
-                for(int j=0; j<val.length(); j++){
-                    if (tildes == val.charAt(j)) cont++;
+                letras = nombre.charAt(i);
+                for(int j=0; j<alfLat.length(); j++){
+                    if (letras == alfLat.charAt(j)) cont++;
                 }
             }
             return cont == nombre.length();			
