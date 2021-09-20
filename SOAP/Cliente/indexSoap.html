@@ -12,6 +12,17 @@
     <title>SOAP</title>
 </head>
 <body>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("form").keypress(function(e) {
+                if (e.which == 13) {
+                    return false;
+                }
+            });
+        });
+    </script>
+
     <div class="container">
         <img src="../Cliente/assets/img/bannerSoap.png" alt="SOAP">
         
@@ -36,7 +47,7 @@
 
             <div class="col-7">
                 <div class="row" id="box">
-                    <form action="#" class="row row-cols-lg-3 g-3 align-items-center">
+                    <div class="row row-cols-lg-3 g-3 align-items-center">
                         <div class="col-12">
                             <div class="input-group">
                                 <div class="input-group-text" style="background-color: cadetblue;">RUT</div>
@@ -64,7 +75,7 @@
                         <div class="col-12">
                             <button type="submit" class="btn btn-dark" id="verifyDV">Verificar DV</button>
                         </div>
-                    </form>
+                    </div>
                 </div>
             </div>
         
@@ -101,7 +112,7 @@
 
             <div class="col-8">
                 <div class="row" id="box">
-                    <form action="#" class="row row-cols-lg-2 g-3 align-items-center">
+                    <div class="row row-cols-lg-2 g-3 align-items-center">
                         <div class="col-12">
                             <div class="input-group">
                                 <div class="input-group-text" style="background-color: rgb(197, 184, 109);">Su Nombre</div>
@@ -111,7 +122,7 @@
                         <div class="col-12">
                             <button type="submit" class="btn btn-dark" id="verifyName">Separar</button>
                         </div>
-                    </form>
+                    </div>
                 </div> 
             </div>
             
