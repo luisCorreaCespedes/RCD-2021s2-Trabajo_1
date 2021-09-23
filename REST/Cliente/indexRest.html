@@ -51,7 +51,7 @@
                         <div class="col-12">
                             <div class="input-group">
                                 <div class="input-group-text" style="background-color: cadetblue;">RUT</div>
-                                <input id="inputRut" type="number" class="form-control" placeholder="12345678" minlength="7" maxle="8" required>
+                                <input id="inputRut" type="number" class="form-control" placeholder="12345678" min="0" minlength="7" maxle="8" required>
                             </div>
                         </div>
                         <div class="col-12">
@@ -143,28 +143,56 @@
 
     <script>
         // Consumidor de servicios
-
-        // Caso 0: Rut inválido
-        // Caso 1: Rut Válido
-        // Caso 2: Rut Inválido
         $(document).ready(function() {
             $('#verifyDV').click(function() {
                 let rut = $('#inputRut').val();
                 let dv = $('#inputDV').val();
-                let request = {
+                let respuestaRut = {
                     rut: rut,
                     dv: dv
                 }
                 $.ajax({
                     type: "POST",
                     url: '/REST/Servicio/public/api/rut',
-                    data: JSON.stringify(request),
+                    data: JSON.stringify(respuestaRut),
                     dataType: 'json',
                     contentType: 'application/json',
                     success: function(data) {
-                        if (data == 0) $('#validatorDV').html('Rut inválido');
-                        else if (data == 1) $('#validatorDV').html('El dígito es válido');
-                        else if (data == 2) $('#validatorDV').html('El dígito NO es válido');
+                        if (data == 0) $('#validatorDV').html('El RUT no es válido');
+                        else if (data == 1) $('#validatorDV').html('El Dígito Verificador ES correcto');
+                        else if (data == 2) $('#validatorDV').html('El Dígito Verificador NO es correcto');
+                    }
+                })
+            })
+
+            $('#verifyName').click(function() {
+                let name = $('#inputName').val();
+                let respuestaNombre = {
+                    name: name
+                }
+                $.ajax({
+                    type: 'POST',
+                    url: '/REST/Servicio/public/api/nombre',
+                    data: JSON.stringify(respuestaNombre),
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    success: function(data) {
+                        if (data == 1) $('#validatorName').html("No hay un nombre completo");
+                        else if (data == 2) $('#validatorName').html("El nombre es inválido");
+                        else {
+                            let nombres = data[0];
+                            let apellidos = data[1];
+                            let arregloNombres = "";
+                            let arregloApellidos = "";
+                            nombres.forEach(element => {
+                                arregloNombres = arregloNombres + element;
+                            });
+                            apellidos.forEach(element => {
+                                arregloApellidos = arregloApellidos + element;
+                            });
+                            let total = arregloNombres.concat('', arregloApellidos);
+                            $('#validatorName').html(total);
+                        }
                     }
                 })
             })

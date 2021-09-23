@@ -7,47 +7,94 @@ use Illuminate\Http\Request;
 class FuncionesRest extends Controller
 {
     public function rut(Request $request) {
-        // Caso 0: Rut inválido
-        // Caso 1: Rut Válido
-        // Caso 2: Rut Inválido
-            $gets = $request->json()->all();
-            $rut = $gets['rut'];
-            $dv = $gets['dv'];
-            $digito;
-            $validador;
-            $rut = str_replace('.', '', $rut);
-            if (strlen($rut) < 7 || strlen($rut) > 8) {
-                return 0;
-            } else {
-                $arr = strrev($rut);
-                $arr = str_split($arr);
-                $serie = 2;
-                $suma = 0;
-                $c = 0;
-                while ($c < 8) {
-                    if ($serie <= 7) {
-                        $suma+=$arr[$c]*$serie;
-                        $serie++;
-                    } else {
-                        $serie = 2;
-                        $suma+=$arr[$c]*$serie;
-                        $serie++;
-                    }
-                    $c++;
+        $gets = $request->json()->all();
+        $rut = $gets['rut'];
+        $dv = $gets['dv'];
+        $validador;
+        if (strlen($rut) < 7 || strlen($rut) > 8) return 0;
+        else {
+            $rutInvertido = strrev($rut);
+            $rutInvertido = str_split($rutInvertido);
+            $serie = 2;
+            $sumaDigitosRut = 0;
+            $contador = 0;
+            while ($contador < 8) {
+                if ($serie <= 7) {
+                    $sumaDigitosRut += $rutInvertido[$contador] * $serie;
+                    $serie++;
+                } else {
+                    $serie = 2;
+                    $sumaDigitosRut += $rutInvertido[$contador] * $serie;
+                    $serie++;
                 }
-                $suma %=11;
-                $suma=11-$suma;
-                if ($suma == 10) {
-                    $digito = 10;
-                } else if ($suma == 11) {
-                    $digito = 11;
-                } else if ($suma < 10) {
-                   $digito = $suma;
+                $contador++;
+            }
+            $sumaDigitosRut %= 11;
+            $sumaDigitosRut = 11 - $sumaDigitosRut;
+            if ($sumaDigitosRut == 10) $validador = 10;
+            else if ($sumaDigitosRut == 11) $validador = 11;
+            else if ($sumaDigitosRut < 10) $validador = $sumaDigitosRut;
+            else return 0;
+        }
+        if ($validador == $dv) return 1;
+        else if ($validador != $dv) return 2;
+        else return 0;
+    }
+
+    public function nombre(Request $request) {
+
+        /* Obtención de datos */
+        $gets = $request->json()->all();
+        $fullNombre = $gets['name'];
+        $respuesta = array();
+        
+        
+        /* Validación áéíóúÁÉÍÓÚñÑü validar */
+        $alfabeto = " ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'";
+        $validador = 0;
+        if (strlen($fullNombre) == 0) $validador = 0;
+        else {
+            $cont = 0;
+            for ($i = 0; $i < strlen($fullNombre); $i++) {
+                for ($j = 0; $j < strlen($alfabeto); $j++) {
+                    if ($fullNombre[$i] == $alfabeto[$j]) $cont++;
                 }
             }
+            if ($cont == strlen($fullNombre)) $validador = 1;
+            else $validador = 2;
+        }
+        
+        /* Separación y jerarquización */
+        $nombre_explode = explode(" ", $fullNombre);
+        $count_nombres = count($nombre_explode);
+        if ($validador == 0) array_push($respuesta, 1);
+        else if ($validador == 1){
+            if ($count_nombres <= 2) array_push($respuesta, 1);
+            else {
+                $apellidos = array();
+                array_push($apellidos, "Apellidos:<br>");
+                array_push($apellidos, $nombre_explode[$count_nombres-2]);
+                array_push($apellidos, "<br>");
+                array_push($apellidos, $nombre_explode[$count_nombres-1]);
+                for ($i = 0; $i < count($apellidos); $i++) {
+                    $apellidos[$i] = ucfirst(strtolower($apellidos[$i]));
+                }
+                $nombres = array();
+                array_push($nombres, "Nombres:<br>");
+                for ($j = 0; $j < $count_nombres-2; $j++) {
+                    array_push($nombres, $nombre_explode[$j]);
+                    array_push($nombres, "<br>");
+                }
+                for ($k = 0; $k < count($nombres); $k++) {
+                    $nombres[$k] = ucfirst(strtolower($nombres[$k]));
+                }
+                array_push($nombres, "<br>");
+                array_push($respuesta, $nombres);
+                array_push($respuesta, $apellidos);
+            }
+        }
+        else array_push($respuesta, 2);
 
-            if ($digito == $dv) return 1;
-            else if ($digito != $dv) return 2;
-            else return 0;
+        return $respuesta;
     }
 }
