@@ -12,6 +12,17 @@
     <title>REST</title>
 </head>
 <body>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("form").keypress(function(e) {
+                if (e.which == 13) {
+                    return false;
+                }
+            });
+        });
+    </script>
+
     <div class="container">
         <img src="../Cliente/assets/img/bannerRest.png" alt="REST">
         
@@ -34,21 +45,20 @@
 
         <div class="row">
 
-            <div class="col-8">
+            <div class="col-7">
                 <div class="row" id="box">
-                    <form class="row row-cols-lg-3 g-3 align-items-center">
+                    <div class="row row-cols-lg-3 g-3 align-items-center">
                         <div class="col-12">
                             <div class="input-group">
                                 <div class="input-group-text" style="background-color: cadetblue;">RUT</div>
-                                <input type="number" class="form-control" placeholder="12345678" min="1000000" max="99999999" required>
+                                <input id="inputRut" type="number" class="form-control" placeholder="12345678" minlength="7" maxle="8" required>
                             </div>
                         </div>
                         <div class="col-12">
                             <div class="input-group">
                                 <div class="input-group-text" style="background-color: rgb(111, 161, 134);">DV</div>
-                                <select class="form-select" required>
-                                    <option selected disabled value="">Elija DV</option>
-                                    <option value="0">0</option>
+                                <select id="inputDV" class="form-select" required>
+                                    <option selected value="11">0</option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
@@ -58,32 +68,27 @@
                                     <option value="7">7</option>
                                     <option value="8">8</option>
                                     <option value="9">9</option>
-                                    <option value="K">K</option>
+                                    <option value="10">K</option>
                                 </select>
                             </div>
                         </div>
                         <div class="col-12">
-                            <button type="button" class="btn btn-dark" id="verifyDV">Verificar DV</button>
+                            <button type="submit" class="btn btn-dark" id="verifyDV">Verificar DV</button>
                         </div>
-                    </form>
+                    </div>
                 </div>
             </div>
         
-            <div class="col-4">
-                <div class="row" id="box">
-                    <form class="row row-cols-lg-1 g-3 align-items-center">
+            <div class="col-5">
+                <div class="row" id="box" style="background-color: white;">
+                    <form class="row row-cols-lg-1 g-3">
                         <div class="col-12">
-                            <div class="input-group">
-                                <div class="input-group-text" style="background-color: rgb(153, 199, 100);">Validación</div>
-                                <div class="input-group-text">
-                                    <strong id="validatorDV"></strong>
-                                </div>
-                            </div>
+                            <h4><strong id="validatorDV"> - - - </strong></h4>
                         </div>
                     </form>
                 </div>
             </div>
-
+    
         </div>
     <!-- FIN Formulario RUT -->
 
@@ -107,30 +112,25 @@
 
             <div class="col-8">
                 <div class="row" id="box">
-                    <form class="row row-cols-lg-2 g-3 align-items-center">
+                    <div class="row row-cols-lg-2 g-3 align-items-center">
                         <div class="col-12">
                             <div class="input-group">
                                 <div class="input-group-text" style="background-color: rgb(197, 184, 109);">Su Nombre</div>
-                                <input type="text" class="form-control" placeholder="Nombre Nombre Apellido Apellido" required>
+                                <input id="inputName" type="text" class="form-control" placeholder="Nombre Nombre Apellido Apellido" required>
                             </div>
                         </div>
                         <div class="col-12">
-                            <button type="button" class="btn btn-dark" id="verifyName">Separar</button>
+                            <button type="submit" class="btn btn-dark" id="verifyName">Separar</button>
                         </div>
-                    </form>
+                    </div>
                 </div> 
             </div>
             
             <div class="col-4">
-                <div class="row" id="box">
-                    <form class="row row-cols-lg-1 g-3 align-items-center">
+                <div class="row" id="box" style="background-color: white;">
+                    <form class="row row-cols-lg-1 g-3">
                         <div class="col-12">
-                            <div class="input-group">
-                                <div class="input-group-text" style="background-color: rgb(199, 100, 191);">Jerarquía</div>
-                                <div class="input-group-text">
-                                    <strong id="validatorName"></strong>
-                                </div>
-                            </div>
+                            <h4><strong id="validatorName"> - - - </strong></h4>
                         </div>
                     </form>
                 </div>
@@ -140,5 +140,36 @@
     <!-- FIN Formulario NOMBRES -->
 
     </div>
+
+    <script>
+        // Consumidor de servicios
+
+        // Caso 0: Rut inválido
+        // Caso 1: Rut Válido
+        // Caso 2: Rut Inválido
+        $(document).ready(function() {
+            $('#verifyDV').click(function() {
+                let rut = $('#inputRut').val();
+                let dv = $('#inputDV').val();
+                let request = {
+                    rut: rut,
+                    dv: dv
+                }
+                $.ajax({
+                    type: "POST",
+                    url: '/REST/Servicio/public/api/rut',
+                    data: JSON.stringify(request),
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    success: function(data) {
+                        if (data == 0) $('#validatorDV').html('Rut inválido');
+                        else if (data == 1) $('#validatorDV').html('El dígito es válido');
+                        else if (data == 2) $('#validatorDV').html('El dígito NO es válido');
+                    }
+                })
+            })
+        });
+    </script>
+
 </body>
 </html>
