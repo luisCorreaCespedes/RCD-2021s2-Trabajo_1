@@ -1,0 +1,3 @@
+sonar-scanner
+
+PAUSE

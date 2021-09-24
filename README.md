@@ -5,7 +5,7 @@
 Construir Web Services (SOAP y REST) que puedan realizar los métodos de Verificación de RUT y 
 Separador Jerárquico de Nombres. Se deberá construir un Cliente y un Servicio para cada Web Services pedido.
 El lenguaje de programación de los Servicios debe ser distinto al usado para los Clientes, y a su vez, los lenguajes 
-de programación para los servicios deben ser distintos.
+de programación para los Servicios deben ser distintos.
 
 ## Métodos de integración
 
