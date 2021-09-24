@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class FuncionesRest extends Controller
 {
@@ -11,7 +13,9 @@ class FuncionesRest extends Controller
         $rut = $gets['rut'];
         $dv = $gets['dv'];
         $validador;
-        if (strlen($rut) < 7 || strlen($rut) > 8) return 0;
+        if (strlen($rut) < 7 || strlen($rut) > 8) {
+            return 0;
+        }
         else {
             $rutInvertido = strrev($rut);
             $rutInvertido = str_split($rutInvertido);
@@ -31,45 +35,70 @@ class FuncionesRest extends Controller
             }
             $sumaDigitosRut %= 11;
             $sumaDigitosRut = 11 - $sumaDigitosRut;
-            if ($sumaDigitosRut == 10) $validador = 10;
-            else if ($sumaDigitosRut == 11) $validador = 11;
-            else if ($sumaDigitosRut < 10) $validador = $sumaDigitosRut;
-            else return 0;
+            switch ($sumaDigitosRut) {
+                case 10: $validador = 10;
+                    break;
+                case 11: $validador = 11;
+                    break;
+                case $sumaDigitosRut < 10: $validador = $sumaDigitosRut;
+                    break;
+                default: $validador = $sumaDigitosRut;
+            }
         }
-        if ($validador == $dv) return 1;
-        else if ($validador != $dv) return 2;
-        else return 0;
+        if ($validador == $dv) {
+            return 1;
+        }
+        else {
+            return 2;
+        }
     }
 
     public function nombre(Request $request) {
 
         /* Obtención de datos */
         $gets = $request->json()->all();
-        $fullNombre = $gets['name'];
+        $nombre = $gets['name'];
+        $fullNombre = $nombre;
+        $fullNombre = str_replace(
+            array('á', 'é', 'í', 'ó', 'ú', 'Á', 'É', 'Í', 'Ó', 'Ú', 'ñ', 'Ñ', 'ü'),
+            array('0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '+', '-', '*'),
+            $fullNombre
+        );
         $respuesta = array();
         
-        
-        /* Validación áéíóúÁÉÍÓÚñÑü validar */
-        $alfabeto = " ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'";
+        /* Validación */
+        $alfabeto = " ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+-*'";
         $validador = 0;
-        if (strlen($fullNombre) == 0) $validador = 0;
+        if (strlen($fullNombre) == 0) {
+            $validador = 0;
+        }
         else {
             $cont = 0;
             for ($i = 0; $i < strlen($fullNombre); $i++) {
                 for ($j = 0; $j < strlen($alfabeto); $j++) {
-                    if ($fullNombre[$i] == $alfabeto[$j]) $cont++;
+                    if ($fullNombre[$i] == $alfabeto[$j]) {
+                        $cont++;
+                    }
                 }
             }
-            if ($cont == strlen($fullNombre)) $validador = 1;
-            else $validador = 2;
+            if ($cont == strlen($fullNombre)) {
+                $validador = 1;
+            }
+            else {
+                $validador = 2;
+            }
         }
         
         /* Separación y jerarquización */
-        $nombre_explode = explode(" ", $fullNombre);
+        $nombre_explode = explode(" ", $nombre);
         $count_nombres = count($nombre_explode);
-        if ($validador == 0) array_push($respuesta, 1);
+        if ($validador == 0) {
+            array_push($respuesta, 1);
+        }
         else if ($validador == 1){
-            if ($count_nombres <= 2) array_push($respuesta, 1);
+            if ($count_nombres <= 2) {
+                array_push($respuesta, 1);
+            }
             else {
                 $apellidos = array();
                 array_push($apellidos, "Apellidos:<br>");
@@ -93,8 +122,9 @@ class FuncionesRest extends Controller
                 array_push($respuesta, $apellidos);
             }
         }
-        else array_push($respuesta, 2);
-
+        else {
+            array_push($respuesta, 2);
+        }
         return $respuesta;
     }
 }

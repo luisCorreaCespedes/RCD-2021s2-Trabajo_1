@@ -116,7 +116,7 @@
                         <div class="col-12">
                             <div class="input-group">
                                 <div class="input-group-text" style="background-color: rgb(197, 184, 109);">Su Nombre</div>
-                                <input id="inputName" type="text" class="form-control" placeholder="Nombre Nombre Apellido Apellido" required>
+                                <input id="inputName" type="text" class="form-control" placeholder="Nombre Nombre Apellido Apellido" required accept-charset="utf-8">
                             </div>
                         </div>
                         <div class="col-12">
@@ -177,8 +177,13 @@
                     dataType: 'json',
                     contentType: 'application/json',
                     success: function(data) {
-                        if (data == 1) $('#validatorName').html("No hay un nombre completo");
-                        else if (data == 2) $('#validatorName').html("El nombre es inválido");
+                        
+                        if (data == 1) {
+                            $('#validatorName').html("No hay un nombre completo");
+                        }
+                        else if (data == 2) {
+                            $('#validatorName').html("El nombre es inválido");
+                        }
                         else {
                             let nombres = data[0];
                             let apellidos = data[1];
@@ -193,6 +198,7 @@
                             let total = arregloNombres.concat('', arregloApellidos);
                             $('#validatorName').html(total);
                         }
+                        
                     }
                 })
             })
