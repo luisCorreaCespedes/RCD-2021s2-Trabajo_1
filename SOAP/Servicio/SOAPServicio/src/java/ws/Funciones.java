@@ -68,10 +68,16 @@ public class Funciones {
         apellidos = "";
         if(validarNombre(nombre)) {
             for(int i=0; i<nombreSeparado.length-2; i++){
-                nombres+=nombreSeparado[i] + "<br>";
+                String nombreListo = nombreSeparado[i];
+                String primeraLetra = nombreListo.substring(0, 1).toUpperCase();
+                String restoNombre = nombreListo.substring(1).toLowerCase();
+                nombres+=(primeraLetra+restoNombre) + "<br>";
             }
             for(int i=nombreSeparado.length-2; i<nombreSeparado.length; i++){
-                apellidos+=nombreSeparado[i] + "<br>";
+                String apellidoListo = nombreSeparado[i];
+                String primeraLetra = apellidoListo.substring(0, 1).toUpperCase();
+                String restoNombre = apellidoListo.substring(1).toLowerCase();
+                apellidos+=(primeraLetra+restoNombre) + "<br>";
             } 
             if ("".equals(nombres)) return mensaje;
             else return "Nombres:" + "<br>" + nombres + "<br>" + "Apellidos:" + "<br>" + apellidos;
