@@ -13,9 +13,9 @@ de programación para los Servicios deben ser distintos.
 (ejemplo 12345678; K) como campos separados y devolver como respuesta un indicador de si el Dígito 
 Verificador entregado es o no correcto para el RUT en cuestión.
 
-*“SPLIT” NOMBRE PROPIO*: El método debe recibir un nombre completo (nombres y apellidos, separados 
-por espacio). Se asume que siempre vienen primero los nombres y luego los apellidos (paterno y luego 
-materno), considerando que una persona puede tener uno o más nombres. El método debe devolver una 
+*“SPLIT” NOMBRE PROPIO*: El método debe recibir un Nombre Completo (Nombres y Apellidos, separados 
+por espacio). Se asume que siempre vienen primero los Nombres y luego los Apellidos (Paterno y luego 
+Materno), considerando que una persona puede tener uno o más Nombres. El método debe devolver una 
 estructura jerárquica como la descrita a continuación:
 
 Nombres
